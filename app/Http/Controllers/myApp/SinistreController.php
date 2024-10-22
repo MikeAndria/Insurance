@@ -12,16 +12,15 @@ class SinistreController extends Controller
 {
     public function sinistres()
     {
-        $contrats = Contrat::all();
         $sinistres = Sinistre::all();
+        $contrats = Contrat::doesntHave('sinistres')->get();
         $message = '';
-
         return view( 'myApp.sinistres.sinistres', compact('sinistres', 'contrats', 'message'));
     }
 
     public function rechercherSinistreParId(Request $request)
     {
-        $contrats = Contrat::all();
+        $contrats = Contrat::doesntHave('sinistres')->get();
         $id = $request -> input('sinistre_id');
         // Rechercher un sinistre par son ID
         $sinistres = Sinistre::where('sinistre_id', $id)->get();
@@ -40,22 +39,21 @@ class SinistreController extends Controller
 
     public function store(Request $request)
     {
-        try {
-            $validated = $request->validate([
-                'date_declaration' => 'required|date',
-                'montant_indemnise' => 'required|numeric|min:0',
-                'contrat_id' => 'required|exists:contrats,contrat_id',
-            ]);
-            Sinistre::create($validated);
-            return redirect()->route('sinistres')->with('success', 'Sinistre bien ajouté');
-        } catch (\Exception $e) {
-            return back()->withErrors(['error' => $e->getMessage()]);
-        }        
+        $validated = $request->validate([
+            'date_declaration' => 'required|date',
+            'montant_indemnise' => 'required|numeric|min:0',
+            'contrat_id' => 'required|exists:contrats,contrat_id|unique:sinistres,contrat_id', // Le contrat_id doit être unique
+        ]);
+    
+        Sinistre::create($validated);
+    
+        return redirect()->route('sinistres')->with('success', 'Sinistre bien ajouté');
     }
+    
 
     public function destroy($id)
     {
-        $contrats = Contrat::all();
+        $contrats = Contrat::doesntHave('sinistres')->get();
         $sinistre = Sinistre::find($id);
 
         if ($sinistre) {
@@ -70,7 +68,7 @@ class SinistreController extends Controller
         $validated = $request->validate([
             'date_declaration' => 'required|date',
             'montant_indemnise' => 'required|numeric|min:0',
-            'contrat_id' => 'required|exists:contrats,contrat_id',
+            'contrat_id' => 'required|exists:contrats,contrat_id|unique:sinistres,sinistre_id,'.$id.',contrat_id',
         ]);
 
     

@@ -56,6 +56,6 @@ class Contrat extends Model
 
 	public function sinistres()
 	{
-		return $this->hasMany(Sinistre::class);
+		return $this->hasOne(Sinistre::class, 'sinistre_id');
 	}
 }

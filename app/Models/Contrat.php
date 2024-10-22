@@ -51,11 +51,11 @@ class Contrat extends Model
 
 	public function client()
 	{
-		return $this->belongsTo(Client::class, 'client_id');
+		return $this->belongsTo(Client::class, 'client_id', 'client_id');
 	}
 
 	public function sinistres()
 	{
-		return $this->hasOne(Sinistre::class, 'sinistre_id');
+		return $this->hasOne(Sinistre::class, 'contrat_id', 'contrat_id');
 	}
 }

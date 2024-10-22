@@ -41,6 +41,6 @@ class Sinistre extends Model
 
 	public function contrat()
 	{
-		return $this->belongsTo(Contrat::class, 'contrat_id');
+		return $this->belongsTo(Contrat::class, 'contrat_id', 'contrat_id');
 	}
 }

@@ -44,6 +44,6 @@ class Client extends Model
 
 	public function contrats()
 	{
-		return $this->hasMany(Contrat::class, 'client_id');
+		return $this->hasMany(Contrat::class, 'client_id', 'client_id');
 	}
 }

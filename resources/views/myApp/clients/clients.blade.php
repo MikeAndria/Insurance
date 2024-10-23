@@ -26,7 +26,7 @@
                     <input type="text" id="nom" name="nom" required>
                 </div>
                 <div class="form-group">
-                    <label for="prenom">Prénom</label>
+                    <label for="prenom">Prénom(s)</label>
                     <input type="text" id="prenom" name="prenom" required>
                 </div>
                 <div class="form-group">
@@ -63,7 +63,7 @@
                     <input type="text" id="edit-nom" name="nom" required>
                 </div>
                 <div class="form-group">
-                    <label for="prenom">Prénom</label>
+                    <label for="prenom">Prénom(s)</label>
                     <input type="text" id="edit-prenom" name="prenom" required>
                 </div>
                 <div class="form-group">

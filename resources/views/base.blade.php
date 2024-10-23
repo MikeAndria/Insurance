@@ -18,8 +18,6 @@
                 <a href="{{ route ('clients') }}" onclick="showClients()">Gestion des Clients</a>
                 <a href="{{ route ('contrats') }}" onclick="showContrats()">Gestion des Contrats</a>
                 <a href="{{ route ('sinistres') }}" onclick="showSinistres()">Gestion des Sinistres</a>
-                <a href="{{ route ('relations') }}" onclick="showRelation()">Relation entre les Clients et les Contrats</a>
-                <a href="{{ route ('historiques') }}" onclick="showHistorique()">Historique des Contrats</a>
                 <!-- Autres éléments de menu -->
             </div>
         </div>

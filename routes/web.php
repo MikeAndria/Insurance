@@ -24,7 +24,7 @@ use App\Http\Controllers\myApp\HistoriqueController;
     return view('welcome');
 });*/
 
-Route::get('', [MainController::class, 'index'])->name('acceuil');
+Route::get('', [MainController::class, 'acceuil'])->name('acceuil');
 
 Route::get('/clients', [ClientController::class, 'clients'])->name('clients');
 Route::get('/clients_sans_contrat', [ClientController::class, 'clientsSansContrat'])->name('clients_sans_contrat');

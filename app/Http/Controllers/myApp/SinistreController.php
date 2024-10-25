@@ -39,15 +39,19 @@ class SinistreController extends Controller
 
     public function store(Request $request)
     {
+        $contrat_id = $request->contrat_id;
+        $contrat = Contrat::where('contrat_id', $contrat_id)->first();
+        $max_montant_assure = $contrat->montant_assure; 
         $validated = $request->validate([
             'date_declaration' => 'required|date',
-            'montant_indemnise' => 'required|numeric|min:0',
+            'montant_indemnise' => 'required|numeric|min:0|max:'.$max_montant_assure,
             'contrat_id' => 'required|exists:contrats,contrat_id|unique:sinistres,contrat_id', // Le contrat_id doit être unique
         ]);
     
         Sinistre::create($validated);
     
         return redirect()->route('sinistres')->with('success', 'Sinistre bien ajouté');
+        
     }
     
 
@@ -65,10 +69,13 @@ class SinistreController extends Controller
     public function update(Request $request, $id)
     {
         // Valider les données
+        $contrat_id = $request->contrat_id;
+        $contrat = Contrat::where('contrat_id', $contrat_id)->first();
+        $max_montant_assure = $contrat->montant_assure; 
         $validated = $request->validate([
             'date_declaration' => 'required|date',
-            'montant_indemnise' => 'required|numeric|min:0',
-            'contrat_id' => 'required|exists:contrats,contrat_id|unique:sinistres,sinistre_id,'.$id.',contrat_id',
+            'montant_indemnise' => 'required|numeric|min:0|max:'.$max_montant_assure,
+            'contrat_id' => 'required|exists:contrats,contrat_id|unique:sinistres,contrat_id', // Le contrat_id doit être unique
         ]);
 
     

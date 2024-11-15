@@ -50,7 +50,7 @@
         </div>
     </div>
 
-    <!-- Recherche d'un client -->
+    <!-- Recherche d'un sinistre -->
     <form action="{{ route ('recherche_sinistre') }}" method="GET">
         <div class="search-bar">
         <label for="sinistre_id"></label>

@@ -5,6 +5,6 @@
      <li>Find this file and import to the database you have created before : database/math_assur.sql</li>
      <li>Install composer for your machine</li>
      <li>Start appach and mysql </li>
-     <li>Run php artisan serve on CMD and visit the link</li>
+     <li>Run 'php artisan serve' on CMD and visit the link</li>
 </ol>
 

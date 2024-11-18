@@ -7,7 +7,7 @@ use App\Http\Controllers\myApp\ContratController;
 use App\Http\Controllers\myApp\SinistreController;
 use App\Http\Controllers\myApp\RelationController;
 use App\Http\Controllers\myApp\HistoriqueController;
-
+use App\Http\Controllers\auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ use App\Http\Controllers\myApp\HistoriqueController;
     return view('welcome');
 });*/
 
-Route::get('', [MainController::class, 'acceuil'])->name('acceuil');
+Route::get('/', [MainController::class, 'acceuil'])->name('acceuil');
 
 Route::get('/clients', [ClientController::class, 'clients'])->name('clients');
 Route::get('/clients_sans_contrat', [ClientController::class, 'clientsSansContrat'])->name('clients_sans_contrat');
@@ -55,3 +55,13 @@ Route::put('/sinistres/{id}', [SinistreController::class, 'update'])->name('sini
 
 Route::get('/relations', [RelationController::class, 'relations'])->name('relations');
 Route::get('/historiques', [HistoriqueController::class, 'historiques'])->name('historiques');
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+Route::get('/password/forgot', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/password/forgot', [AuthController::class, 'sendResetLink']);
+Route::get('/password/reset/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password/reset', [AuthController::class, 'resetPassword']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
